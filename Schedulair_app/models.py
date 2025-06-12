@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from datetime import datetime, timedelta
 
 
@@ -23,6 +23,7 @@ def end_time_choices():
     # slots.remove(('8:30', '8:30'))
     return slots
 
+
 class Time_table(models.Model):     # instances of each day
     day_choices = [
         ('Monday', 'Monday'),
@@ -34,7 +35,7 @@ class Time_table(models.Model):     # instances of each day
     ]
     day = models.CharField(choices=day_choices, null=False, blank=False, max_length=200)
     class_name = models.TextField(null=False, blank=False, default="Break")
-    Subject_teacher = models.CharField(max_length=250, null=True, blank=True)
+    subject_teacher = models.CharField(max_length=250, null=True, blank=True)
     class_no = models.IntegerField() # in which period the class takes place
     class_room_no = models.CharField(max_length=100)
     start_time = models.CharField(choices=start_time_choices(), max_length=200)

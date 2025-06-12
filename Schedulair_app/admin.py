@@ -5,5 +5,5 @@ from .models import *
 
 @admin.register(Time_table)
 class Time_Table_Admin(admin.ModelAdmin):
-    list_display = ('class_name', 'start_time', 'end_time', 'date', 'class_no')
+    list_display = ('class_name', 'start_time', 'end_time', 'date', 'day', 'class_no')
     
