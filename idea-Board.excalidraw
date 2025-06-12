@@ -1,0 +1,51 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor",
+  "elements": [
+    {
+      "id": "twuGWn9rkPsZHSsQ974nr",
+      "type": "text",
+      "x": 175.33340454101562,
+      "y": 181.33331298828125,
+      "width": 801.319580078125,
+      "height": 175,
+      "angle": 0,
+      "strokeColor": "#2f9e44",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a1",
+      "roundness": null,
+      "seed": 916892804,
+      "version": 440,
+      "versionNonce": 711479556,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1749712489716,
+      "link": null,
+      "locked": false,
+      "text": "attendance records -- \n    import the schedule -- \n        first manually for each day and then span it across the whole semester.\n        Then make a one that will take data, like a dictionary made from the data \n        on the png and using that instances for each day are created.\n    show the schedule --\n        in a dashboard type style",
+      "fontSize": 20,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "attendance records -- \n    import the schedule -- \n        first manually for each day and then span it across the whole semester.\n        Then make a one that will take data, like a dictionary made from the data \n        on the png and using that instances for each day are created.\n    show the schedule --\n        in a dashboard type style",
+      "autoResize": true,
+      "lineHeight": 1.25
+    }
+  ],
+  "appState": {
+    "gridSize": 20,
+    "gridStep": 5,
+    "gridModeEnabled": false,
+    "viewBackgroundColor": "#ffffff"
+  },
+  "files": {}
+}
