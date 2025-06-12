@@ -35,7 +35,7 @@ class Command(BaseCommand):
                     if new_date > sem_end_date:
                         continue
                     if not Time_table.objects.filter(date=new_date, class_name = entry.class_name).exists():
-                        Time_table.objects.create(
+                        new_entry = Time_table.objects.create(
                             day=entry.day,
                             class_name = entry.class_name,
                             subject_teacher = entry.subject_teacher,
@@ -45,6 +45,13 @@ class Command(BaseCommand):
                             end_time = entry.end_time,
                             date = new_date,
                         )
+                    if not Attendance.objects.filter(date=new_date, time_table_entry = new_entry).exists():
+                        Attendance.objects.create(
+                            time_table_entry = new_entry,
+                            date = new_date,
+                            present = False,
+                        )
+
             week_index += 1
             week_start += timedelta(weeks=1)
 
