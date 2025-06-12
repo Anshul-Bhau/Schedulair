@@ -14,3 +14,7 @@ class Attendance_Admin(admin.ModelAdmin):
 @admin.register(Assignments)
 class Assignment_Admin(admin.ModelAdmin):
     list_display = ('name', 'subject', 'issue_date', 'submission_date', 'completed', 'submitted')
+
+@admin.register(Projects)
+class Project_Admin(admin.ModelAdmin):
+    list_display = ('name', 'start_date', 'deadline', 'description', 'completed')

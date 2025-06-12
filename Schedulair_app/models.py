@@ -1,5 +1,6 @@
 from django.db import models, transaction
 from datetime import datetime, timedelta
+from django.db.models import Q, Count
 
 
 
@@ -52,11 +53,12 @@ class Attendance(models.Model):
     date = models.DateField()
     present = models.BooleanField(default=False)
 
-    def attendance_summary(self, subject):
-        return Attendance.objects.filter(class_name = subject).aggregate(
-            total=models.Count('id'),
-            present=models.Count('id', filter=models.Q(present=True)),
-            absent=models.Count('id', filter=models.Q(present=False))
+    @classmethod
+    def attendance_summary(cls, subject):
+        return cls.objects.filter(time_table_entry__class_name = subject).aggregate(
+            total=Count('id'),
+            present_count=Count('id', filter=Q(present=True)),
+            absent_count=Count('id', filter=Q(present=False))
         )
 
 class Assignments(models.Model):
@@ -67,11 +69,30 @@ class Assignments(models.Model):
     completed = models.BooleanField(default=False)
     submitted = models.BooleanField(default=False)
     
-    def assignment_summary(self):
-        return Assignments.objects.all().aaggregate(
-            total = models.Count('id'),
-            completed= models.Count('id', filter=models.Q(completed=True)),
-            incomplete = models.Count('id', filter=models.Q(completed=False)),
-            submitted = models.Count('id', filter=models.Q(submitted=True)),
-            not_submitted= models.Count('id', filter=models.Q(submitted=False))
+    @classmethod
+    def assignment_summary(cls):
+        return cls.objects.all().aggregate(
+            total = Count('id'),
+            completed_count= Count('id', filter=Q(completed=True)),
+            incomplete_count = Count('id', filter=Q(completed=False)),
+            submitted_count = Count('id', filter=Q(submitted=True)),
+            not_submitted_count= Count('id', filter=Q(submitted=False))
         )
+
+class Projects(models.Model):
+    name = models.CharField(max_length=250, null=False, blank=False)
+    start_date = models.DateField()
+    deadline = models.DateField()
+    description = models.TextField(null=False)
+    completed = models.BooleanField(default=False)
+
+    @classmethod
+    def projects_summary(cls):
+        return cls.objects.all().aggregate(
+            total = Count('id'),
+            completed_count = Count('id', filter=Q(completed=True))
+        )
+    
+# print(Projects.projects_summary())
+# print(Attendance.attendance_summary("HV"))
+# print(Assignments.assignment_summary())
