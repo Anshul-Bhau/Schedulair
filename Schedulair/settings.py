@@ -149,4 +149,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_UUID_FIELD = 'django.db.models.UuidField'
 
-# AUTH_USER_MODEL = 'Schedulair_app.Users'
+AUTH_USER_MODEL = 'Schedulair_app.Users'

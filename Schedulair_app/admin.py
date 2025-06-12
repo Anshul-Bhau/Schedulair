@@ -1,7 +1,12 @@
 from django.contrib import admin
+from django.contrib.auth import get_user_model
 from .models import *
 
 # Register your models here.
+Users = get_user_model()
+@admin.register(Users)
+class UsersAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email', 'role')
 
 @admin.register(Time_table)
 class Time_Table_Admin(admin.ModelAdmin):

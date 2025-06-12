@@ -1,7 +1,32 @@
 from django.db import models, transaction
 from datetime import datetime, timedelta
 from django.db.models import Q, Count
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.hashers import make_password
+import uuid
 
+
+class Users(AbstractUser):
+    Role_Choices = [
+        ("admin", "admin"),
+        ("user", "user")
+    ]
+
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
+    username = models.CharField(max_length=225, null=False, blank=False, unique=False)
+    email = models.EmailField(max_length=250, null=False, blank=False, unique=True)
+    role = models.CharField(max_length=30, blank=False, null=False, choices=Role_Choices)
+    user_created_at = models.DateTimeField(auto_now_add=True)
+    password = models.CharField(max_length=250, null=False, blank=False)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['role', 'username', 'password']
+    
+    def save(self, *args, **kwargs):
+        if self.password and not self.password.startswith('pbkdf2_'):
+            self.password = make_password(self.password)
+
+        super().save(*args, **kwargs)
 
 
 def start_time_choices():
