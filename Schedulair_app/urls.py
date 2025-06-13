@@ -3,7 +3,8 @@ from .views import *
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
-    path("home/", home),
+    path("dashboard/", dashboard),
+    # path("login/", loginpage, name="login_page")
 ]
 
 if settings.DEBUG:

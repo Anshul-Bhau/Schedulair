@@ -11,6 +11,7 @@ class UsersAdmin(admin.ModelAdmin):
 @admin.register(Time_table)
 class Time_Table_Admin(admin.ModelAdmin):
     list_display = ('class_name', 'start_time', 'end_time', 'date', 'day', 'class_no')
+    ordering = ('date', )
     
 @admin.register(Attendance)
 class Attendance_Admin(admin.ModelAdmin):

@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedulair</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static '/css/dashboard.css' %}">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <label class="db">Dashboard</label>
+            <ul>
+                <li><button class="log-option">Sign-in</button></li>
+                <li><button id="theme-toggle"><i class="fa-solid fa-moon"></i></button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="full-container">
+            <div class="horz-cont">
+                <div class="top-panel-container">
+
+                    <div class="panels">
+                        <section class="assignment-sec">
+                            <h3>Assignments</h3>
+                            <div class="scrollable-table-wrapper">
+                                <table class="proj-table header-only">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Subject</th>
+                                            <th>Due Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                                <div class="scroll-body">
+                                    <table class="proj-table body-only">
+                                        <tbody>
+                                            <tr>
+                                                <td>Assignment-1</td>
+                                                <td>Maths</td>
+                                                <td>12-06-2025</td>
+                                                <td class="status">Completed</td>
+                                            </tr>
+                                            <tr>
+                                                <td>tsukuru</td>
+                                                <td>Comp-Sci</td>
+                                                <td>12-06-2025</td>
+                                                <td class="status">Submitted</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Assignment-1</td>
+                                                <td>Maths</td>
+                                                <td>12-06-2025</td>
+                                                <td class="status">Completed</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </section>
+                    </div>
+
+                    <div class="panels">
+                        <section class="project-sec">
+                            <h3>Projects</h3>
+                            <div class="scrollable-table-wrapper">
+                                <table class="proj-table header-only">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Subject</th>
+                                            <th>Due Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                                <div class="scroll-body">
+                                    <table class="proj-table body-only">
+                                        <tbody>
+                                            <tr>
+                                                <td>Assignment-1</td>
+                                                <td>Maths</td>
+                                                <td>12-06-2025</td>
+                                                <td class="status">Completed</td>
+                                            </tr>
+                                            <tr>
+                                                <td>tsukuru</td>
+                                                <td>Comp-Sci</td>
+                                                <td>12-06-2025</td>
+                                                <td class="status">Submitted</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Assignment-1</td>
+                                                <td>Maths</td>
+                                                <td>12-06-2025</td>
+                                                <td class="status">Completed</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="panels">
+                        <section class="github-widget-sec">
+                            <h3>Github Contributions</h3>
+                            <p><a href="https://github.com/Anshul-Bhau" target="_blank">Sober704</a></p>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="tt-cont">
+                    <h2>Class Schedule</h2>
+                    <div class="time-table">
+                        <div class="days">
+                            <ul>
+                                <li>Monday</li>
+                                <li>Tuesday</li>
+                                <li>Wednesday</li>
+                                <li>Thursday</li>
+                                <li>Friday</li>
+                                <li>Saturday</li>
+                            </ul>
+                        </div>
+
+                        <div class="classes">
+                            <div class="class">
+                                <p>sub-name</p>
+                                <p>9:30 - 10:30</p>
+                                <label for="atc-status">Status:</label>
+                                <select name="atc-status" id="atc-status">
+                                    <option value="attended">Attended</option>
+                                    <option value="cancelled">Cancelled</option>
+                                    <option value="absent">Absent</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-cont">
+                <div class="overall-atc">
+                    <h3>Overall Attendance</h3>
+                    <p>89.34%</p>
+                </div>
+                <div class="sub-atc-cont">
+                    <div class="sub-atc">
+                        <ul class="atc-desc">
+                            <li>sub-name</li>
+                            <li>present/total</li>
+                            <li>percentage(34.5%)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
