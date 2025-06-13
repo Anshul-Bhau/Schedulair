@@ -66,7 +66,7 @@ body {
 
 .full-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     max-width: 1200px;
@@ -75,16 +75,10 @@ body {
     gap: 1rem;
 }
 
-.horz-cont {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
 .top-panel-container {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 30px;
 }
 
 .panels {
@@ -92,8 +86,8 @@ body {
     flex-direction: column;
     border-radius: 24px;
     border: 1.4px solid #333;
-    padding: 10px;
-    width: 310px;
+    padding: 10px 20px;
+    width: 380px;
     height: 160px;
 }
 
@@ -153,4 +147,120 @@ body {
     font-size: 12px;
     color: beige;
     cursor: pointer;
+}
+
+.bottom-cont {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+    width: 1200px;
+    justify-content: space-between;
+}
+
+.tt-cont {
+    border-radius: 24px;
+    border: #222 1.4px solid;
+    padding: 10px 20px;
+    width: 790px;
+    height: 360px;
+}
+
+.tt-cont h2 {
+    font-size: 2rem;
+    font-family: "Limelight", sans-serif;
+    color: bisque;
+}
+
+.days ul {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 20px;
+    justify-content: space-between;
+}
+
+.days ul li {
+    list-style: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+}
+
+.classes {
+    padding: 20px 20px;
+}
+
+.class {
+    border: #222 1.1px solid;
+    border-radius: 24px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 150px;
+}
+
+.sub-name {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+}
+
+.timing {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+
+#dropdown-btn {
+    cursor: pointer;
+}
+
+select {
+    -webkit-appearance: none;  
+    -moz-appearance: none;     
+    appearance: none;          
+    background: none;
+    background-color: white;
+    padding: 5px;
+    margin-top: 4px;
+    border-radius: 10px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+}
+
+.side-cont {
+    border: #222 solid 1.4px;
+    border-radius: 24px;
+    height: 360px;
+    width: 380px;
+    padding: 8px 8px;
+}
+
+.overall-atc {
+    border: #222 solid 1.1px;
+    border-radius: 14px;
+    padding: 8px 10px;
+}
+
+.overall-atc h3 {
+    font-family: "Limelight", sans-serif;
+    font-size: 1.4rem;
+    color: bisque;
+}
+
+.sub-atc ul {
+    border: #222 solid 1.1px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px 10px;
+}
+
+.sub-atc{
+    margin-top: 3px;
+}
+
+.sub-atc ul li {
+    list-style: none;
 }
