@@ -63,15 +63,39 @@ class Time_table(models.Model):     # instances of each day
     day = models.CharField(choices=day_choices, null=False, blank=False, max_length=200)
     class_name = models.TextField(null=False, blank=False, default="Break")
     subject_teacher = models.CharField(max_length=250, null=True, blank=True)
-    class_no = models.IntegerField() # in which period the class takes place
+    class_no = models.IntegerField(null=True, blank=True) # in which period the class takes place
     class_room_no = models.CharField(max_length=100)
     start_time = models.CharField(choices=start_time_choices(), max_length=200)
     end_time = models.CharField(choices=end_time_choices(), max_length=200)
     date = models.DateField()
 
-    def populate_attendace_records(self):
-        Attendance.objects
-        
+class ExamSchedule(models.Model):
+    subject = models.CharField(max_length=255)
+    exam_name = models.CharField(max_length=255)
+    date = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    room_no = models.CharField(max_length=100)
+
+    def save(self, *args, **kwargs):
+        with transaction.atomic():
+            super().save(*args, **kwargs)
+            Time_table.objects.filter(date=self.date).delete()
+
+    def __str__(self):
+        return f"{self.subject} - {self.exam_name} on {self.date}"
+
+class Holiday(models.Model):
+    date = models.DateField()
+    reason = models.TextField()
+
+    def save(self, *args, **kwargs):
+        with transaction.atomic():
+            super().save(*args, **kwargs)
+            Time_table.objects.filter(date=self.date).delete()
+
+    def __str__(self):
+        return f"{self.date} - Holiday - {self.reason}"
 
 class Attendance(models.Model):
     time_table_entry = models.ForeignKey(Time_table, on_delete=models.CASCADE)
@@ -85,6 +109,9 @@ class Attendance(models.Model):
             present_count=Count('id', filter=Q(present=True)),
             absent_count=Count('id', filter=Q(present=False))
         )
+    
+    def __str__(self):
+        return f"{self.time_table_entry.class_name} on {self.date} - {'present' if (self.present == True) else 'absent'}"
 
 class Assignments(models.Model):
     name = models.CharField(max_length=250, null=False, blank=False, default="Assignment")
@@ -103,6 +130,9 @@ class Assignments(models.Model):
             submitted_count = Count('id', filter=Q(submitted=True)),
             not_submitted_count= Count('id', filter=Q(submitted=False))
         )
+    
+    def __str__(self):
+        return f"{self.name} - {self.subject}"
 
 class Projects(models.Model):
     name = models.CharField(max_length=250, null=False, blank=False)
@@ -117,6 +147,9 @@ class Projects(models.Model):
             total = Count('id'),
             completed_count = Count('id', filter=Q(completed=True))
         )
+    
+    def __str__(self):
+        return f"{self.name} - {self.description}"
     
 # print(Projects.projects_summary())
 # print(Attendance.attendance_summary("HV"))

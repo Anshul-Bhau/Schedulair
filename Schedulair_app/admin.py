@@ -12,6 +12,16 @@ class UsersAdmin(admin.ModelAdmin):
 class Time_Table_Admin(admin.ModelAdmin):
     list_display = ('class_name', 'start_time', 'end_time', 'date', 'day', 'class_no')
     ordering = ('date', )
+
+@admin.register(Holiday)
+class Holiday_Admin(admin.ModelAdmin):
+    list_display = ('date', 'reason')
+    ordering = ('date', )
+
+@admin.register(ExamSchedule)
+class Exam_Schedule_Admin(admin.ModelAdmin):
+    list_display = ('exam_name', 'subject', 'start_time', 'end_time', 'date', 'room_no')
+    ordering = ('date', )
     
 @admin.register(Attendance)
 class Attendance_Admin(admin.ModelAdmin):
