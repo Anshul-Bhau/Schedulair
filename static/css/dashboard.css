@@ -97,6 +97,7 @@ body {
     color: bisque;
 }
 
+
 .scrollable-table-wrapper {
     width: 100%;
     max-height: 150px;
@@ -116,7 +117,7 @@ body {
 .proj-table td {
     padding: 12px;
     font-size: 10px;
-    border: none;
+    /* border: none; */
     text-align: left;
 }
 
@@ -263,4 +264,10 @@ select {
 
 .sub-atc ul li {
     list-style: none;
+}
+
+.status {
+    border: #222 solid 1px;
+    border-radius: 12px;
+    padding: 6px;
 }
