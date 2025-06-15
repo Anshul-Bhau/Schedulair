@@ -107,7 +107,8 @@ class Attendance(models.Model):
         return cls.objects.filter(time_table_entry__class_name = subject).aggregate(
             total=Count('id'),
             present_count=Count('id', filter=Q(present=True)),
-            absent_count=Count('id', filter=Q(present=False))
+            absent_count=Count('id', filter=Q(present=False)),
+            percentage = ((Count('id', filter=Q(present=True)))/(Count('id')))*100 
         )
     
     def __str__(self):
