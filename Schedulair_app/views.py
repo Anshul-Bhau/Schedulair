@@ -78,7 +78,10 @@ def dashboard(request):
         'attendances' : attendances,
         'overall_per' : overall_per,
     }
+    with open("context.txt", "w") as fh:
+        fh.write(str(context))
     return render(request, "dashboard.html", context=context)
+
 
 def loginpage(request):
     return render(request, 'login.html')

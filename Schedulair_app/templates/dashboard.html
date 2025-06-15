@@ -43,24 +43,20 @@
                             <div class="scroll-body">
                                 <table class="proj-table body-only">
                                     <tbody>
+                                        {% for assignment in assignments %}
                                         <tr>
-                                            <td>Assignment-1</td>
-                                            <td>Maths</td>
-                                            <td>12-06-2025</td>
-                                            <td><span class="status">Completed</span></td>
+                                            <td>{{ assignment.name }}</td>
+                                            <td>{{ assignment.subject }}</td>
+                                            <td>{{ assignment.submission_date }}</td>
+                                            <td><span class="status">
+                                                {% if assignment.completed %}
+                                                    Completed
+                                                {% else %}
+                                                    Incomplete
+                                                {% endif %}
+                                            </span></td>
                                         </tr>
-                                        <tr>
-                                            <td>tsukuru</td>
-                                            <td>Comp-Sci</td>
-                                            <td>12-06-2025</td>
-                                            <td><span class="status">Submitted</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Assignment-1</td>
-                                            <td>Maths</td>
-                                            <td>12-06-2025</td>
-                                            <td><span class="status">Completed</span></td>
-                                        </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -77,7 +73,7 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Subject</th>
+                                        <th>Start Date</th>
                                         <th>Due Date</th>
                                         <th>Status</th>
                                     </tr>
@@ -87,24 +83,20 @@
                             <div class="scroll-body">
                                 <table class="proj-table body-only">
                                     <tbody>
+                                        {% for project in projects %}
                                         <tr>
-                                            <td>Assignment-1</td>
-                                            <td>Maths</td>
-                                            <td>12-06-2025</td>
-                                            <td ><span class="status">Completed</span></td>
+                                            <td>{{ project.name }}</td>
+                                            <td>{{ project.start_date }}</td>
+                                            <td>{{ project.deadline }}</td>
+                                            <td><span class="status">
+                                                {% if project.completed %}
+                                                    Completed
+                                                {% else %}
+                                                    Incomplete
+                                                {% endif %}
+                                            </span></td>
                                         </tr>
-                                        <tr>
-                                            <td>tsukuru</td>
-                                            <td>Comp-Sci</td>
-                                            <td>12-06-2025</td>
-                                            <td ><span class="status">Submitted</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Assignment-1</td>
-                                            <td>Maths</td>
-                                            <td>12-06-2025</td>
-                                            <td ><span class="status">Completed</span></td>
-                                        </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -136,9 +128,10 @@
                         </div>
 
                         <div class="classes">
+                            {% for class in current_date_tt %}
                             <div class="class">
-                                <p class="sub-name">sub-name</p>
-                                <p class="timing">9:30 - 10:30</p>
+                                <p class="sub-name">{{ class.class_name }}</p>
+                                <p class="timing">{{ class.start_time }} - {{ class.end_time }}</p>
                                 <label for="atc-status" id="dropdown-btn">Status <i
                                         class="fa-solid fa-angle-down"></i></label>
                                 <div class="select-wrapper">
@@ -149,21 +142,24 @@
                                     </select>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
                 <div class="side-cont">
                     <div class="overall-atc">
                         <h3>Overall Attendance</h3>
-                        <p>89.34%</p>
+                        <p>{{ overall_per }}%</p>
                     </div>
                     <div class="sub-atc-cont">
                         <div class="sub-atc">
-                            <ul class="atc-desc">
-                                <li>sub-name</li>
-                                <li>present/total</li>
-                                <li>percentage(34.5%)</li>
-                            </ul>
+                            {% for subject, stats in attendances.items %}
+                            <div class="atc-desc">
+                                    <h3>{{ subject }}</h3>
+                                    <p>{{ stats.present_count }}/{{ stats.total }}</p>
+                                    <p>{{ stats.percentage }}%</p>
+                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

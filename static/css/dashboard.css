@@ -249,7 +249,7 @@ select {
     color: bisque;
 }
 
-.sub-atc ul {
+.atc-desc{
     border: #222 solid 1.1px;
     border-radius: 14px;
     display: flex;
@@ -262,9 +262,6 @@ select {
     margin-top: 3px;
 }
 
-.sub-atc ul li {
-    list-style: none;
-}
 
 .status {
     border: #222 solid 1px;
