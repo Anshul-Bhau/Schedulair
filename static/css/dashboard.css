@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;800&display=swap");
 
 * {
     margin: 0;
@@ -8,7 +9,11 @@
 }
 
 body {
-    background-image: url('/static/images/bg2.png');
+    font-family: "Poppins", serif;
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle,
+            rgba(238, 174, 202, 1) 0%,
+            rgba(148, 187, 233, 1) 100%);
     background-size: cover;
     background-position: left center;
     background-repeat: no-repeat;
@@ -25,11 +30,13 @@ body {
 }
 
 .navbar .db {
-    color: rgba(121, 65, 152, 0.863);
-    font-family: "Limelight", sans-serif;
+    position: relative;
+    color: rgb(0, 0, 0);
+    /* font-family: "Limelight", sans-serif; */
     font-weight: 700;
     font-style: normal;
     font-size: 2rem;
+    left: 12px;
 }
 
 .navbar ul {
@@ -94,17 +101,16 @@ body {
     padding: 10px 20px;
     width: 380px;
     height: 160px;
-    background: rgba(255, 255, 255, 0.4);
-    /* semi-transparent */
-    backdrop-filter: blur(10px);
-    border: 1.4px solid rgba(255, 255, 255, 0.01);
-    box-shadow: 0px 4px 30px rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    border: 1.4px solid rgba(0, 0, 0, 0.18);
 }
 
 .panels h3 {
     font-size: 1.3rem;
-    font-family: "Limelight", sans-serif;
-    color: rgba(121, 65, 152, 0.863);
+    /* font-family: "Limelight", sans-serif; */
+    /* color: rgba(121, 65, 152, 0.863); */
 }
 
 
@@ -189,11 +195,10 @@ body {
 }
 
 .tt-cont {
-    background: rgba(255, 255, 255, 0.3);
-    /* semi-transparent */
-    backdrop-filter: blur(10px);
-    border: 1.4px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0px 4px 30px rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    border: 1.4px solid rgba(0, 0, 0, 0.18);
     border-radius: 24px;
     padding: 10px 20px;
     width: 790px;
@@ -202,8 +207,8 @@ body {
 
 .tt-cont h2 {
     font-size: 2rem;
-    font-family: "Limelight", sans-serif;
-    color: rgba(121, 65, 152, 0.863);
+    /* font-family: "Limelight", sans-serif; */
+    /* color: rgba(121, 65, 152, 0.863); */
 }
 
 .days ul {
@@ -215,7 +220,7 @@ body {
 
 .days ul li {
     list-style: none;
-    font-family: 'Times New Roman', Times, serif;
+    /* font-family: 'Times New Roman', Times, serif; */
     font-size: 1rem;
 }
 
@@ -236,12 +241,12 @@ body {
 }
 
 .sub-name {
-    font-family: 'Times New Roman', Times, serif;
+    /* font-family: 'Times New Roman', Times, serif; */
     font-size: 25px;
 }
 
 .timing {
-    font-family: 'Times New Roman', Times, serif;
+    /* font-family: 'Times New Roman', Times, serif; */
     font-size: 16px;
 }
 
@@ -263,11 +268,10 @@ select {
 }
 
 .side-cont {
-    background: rgba(255, 255, 255, 0.3);
-    /* semi-transparent */
-    backdrop-filter: blur(10px);
-    border: 1.4px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0px 4px 30px rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    border: 1.4px solid rgba(0, 0, 0, 0.18);
     border-radius: 24px;
     height: 360px;
     width: 380px;
@@ -280,12 +284,6 @@ select {
     padding: 8px 10px;
 }
 
-.overall-atc h3 {
-    font-family: "Limelight", sans-serif;
-    font-size: 1.4rem;
-    color: rgba(121, 65, 152, 0.863);
-}
-
 .atc-desc {
     border: #333 solid 1.1px;
     border-radius: 14px;
@@ -296,6 +294,7 @@ select {
 }
 
 .atc-desc .sub {
+    text-decoration: none;
     text-align: left;
     flex: 1;
 }
@@ -313,8 +312,6 @@ select {
 .sub-atc {
     margin-top: 3px;
 }
-
-
 
 .status {
     border: #333 solid 1px;

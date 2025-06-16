@@ -157,7 +157,7 @@
                         <div class="sub-atc">
                             {% for subject, stats in attendances.items %}
                             <div class="atc-desc">
-                                <p class="sub">{{ subject }}</p>
+                                <a class="sub" href="{% url 'subject_calender' subject %}">{{ subject }}</a>
                                 <p class="present">{{ stats.present_count }}/{{ stats.total }}</p>
                                 <p class="percentage">{{ stats.percentage }}%</p>
                             </div>
