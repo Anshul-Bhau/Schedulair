@@ -11,9 +11,9 @@
 
 <body>
     <div class="header">
-        <button id="prev">&larr;</button>
+        <a id="prev" href="{% url 'subject_calender' subject %}?month={{ prev_month }}&year={{ prev_year }} ">&larr;</a>
         <h1>{{ month_name }}/{{ year }}</h1>
-        <button id="next">&rarr;</button>
+        <a id="next" href="{% url 'subject_calender' subject %}?month={{ next_month }}&year={{ next_year }}">&rarr;</a>
     </div>
     <aside>
         <div class="side-panel">
@@ -46,6 +46,10 @@
             <li style="background-color: rgba(0, 255, 35, 0.25);"><time>{{ day }}</time>{{ status }}</li>
             {% elif status == "Missed" %}
             <li style="background-color: rgba(255, 0, 0, 0.25);"><time>{{ day }}</time>{{ status }}</li>
+            {% elif status == "Exam" %}
+            <li style="background-color: rgba(211, 113, 191, 0.47);"><time>{{ day }}</time>{{ status }}</li>
+            {% elif status == "Holiday" %}
+            <li style="background-color: rgba(72, 164, 174,  0.47);"><time>{{ day }}</time>{{ status }}</li>
             {% endif %}
             {% endfor %}
         </ul>

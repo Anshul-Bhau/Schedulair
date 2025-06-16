@@ -26,19 +26,24 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 5px 20px;
     width: 830px;
     left: 85px;
 }
 
 #prev,
 #next {
+    display: flex
+;
+    text-decoration: none;
     transform: translateY(15%);
     width: 30px;
     height: 30px;
     border-radius: 7px;
-    background-color: transparent;
+    background-color: #fdfdfd36;
     z-index: 15;
+    align-items: center;
+    justify-content: space-around;
     cursor: none;
 }
 

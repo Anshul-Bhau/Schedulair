@@ -3,7 +3,7 @@ import json
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, JsonResponse
 from .models import *
-import datetime
+import datetime, calendar
 from django.db.models import Q, Count
 
 # Create your views here.
@@ -155,27 +155,31 @@ def user_signup(request):
 
 def subject_calender(request, subject):
     current_date = datetime.date.today()
-    month, year = current_date.month, current_date.year
-    month_name = current_date.strftime("%B")
-    month_start_date = current_date.replace(day=1)
+    month = int(request.GET.get('month') or current_date.month)
+    year = int(request.GET.get('year') or current_date.year)
 
+    month_name = datetime.date(year, month, day=1).strftime("%B")
+
+    month_start_date = datetime.date(year, month, 1)
+    _, last_day = calendar.monthrange(year, month)
+    month_end_date = datetime.date(year, month, last_day)
+
+    attendances = Attendance.objects.filter(date__range=(month_start_date, month_end_date), time_table_entry__class_name=subject)
+    exams = ExamSchedule.objects.filter(date__range=(month_start_date, month_end_date))
+    holidays= Holiday.objects.filter(date__range=(month_start_date, month_end_date))
     subjects = list(Time_table.objects.values_list('class_name', flat=True).distinct())
-    
-    if current_date.month == 12:
-        month_end_date = current_date.replace(year=current_date.year + 1, month=1, day=1) - datetime.timedelta(days=1)
-    else:
-        month_end_date = current_date.replace(month=current_date.month + 1, day=1) - datetime.timedelta(days=1)
-    attendances = Attendance.objects.filter(date__range=(month_start_date, month_end_date), time_table_entry__class_name =subject)
-    
-    days = {day : "No Class" for day in range(month_start_date.day, month_end_date.day)}
+
+    days = {day : "No Class" for day in range(month_start_date.day, month_end_date.day + 1)}
     for attendance in attendances:
         if attendance.present:
             days[attendance.date.day] = "Attended"
         else:
             days[attendance.date.day] = "Missed"
     
-    print(attendances)
-    print(days)
+    for exam in exams:
+        days[exam.date.day] = "Exam"
+    for holiday in holidays:
+        days[holiday.date.day] = "Holiday"
 
     context = {
         'subject' : subject,
@@ -184,6 +188,10 @@ def subject_calender(request, subject):
         'month' : month, 
         'month_name' : month_name,
         'year' : year,
+        'prev_month' : (month - 1) if month > 1 else 12,
+        'prev_year' : year if month > 1 else year - 1,
+        'next_month' : (month + 1) if month < 12 else 1,
+        'next_year' : year if month < 12 else year + 1,
     }
 
     return render(request, "subject_cal.html", context)
