@@ -4,10 +4,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: rgba(0,0,0,1);
 }
 
 body {
-    background: slategray;
+    background-image: url('/static/images/bg2.png');
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar {
@@ -19,7 +25,7 @@ body {
 }
 
 .navbar .db {
-    color: aliceblue;
+    color: rgba(121, 65, 152, 0.863);
     font-family: "Limelight", sans-serif;
     font-weight: 700;
     font-style: normal;
@@ -47,16 +53,16 @@ body {
     background: transparent;
     border-radius: 14px;
     padding: 8px 15px;
-    color: #222;
-    border: 1.4px solid #222;
+    color: rebeccapurple;
+    border: 1.4px solid rebeccapurple;
 }
 
 .navbar #theme-toggle {
     background-color: transparent;
     border-radius: 50%;
-    border: 1.4px solid black;
+    border: 1.4px solid rebeccapurple;
     padding: 8px 10px;
-    color: #222;
+    color: rebeccapurple;
 }
 
 .log-option:hover {
@@ -85,16 +91,20 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 24px;
-    border: 1.4px solid #333;
     padding: 10px 20px;
     width: 380px;
     height: 160px;
+    background: rgba(255, 255, 255, 0.4);
+    /* semi-transparent */
+    backdrop-filter: blur(10px);
+    border: 1.4px solid rgba(255, 255, 255, 0.01);
+    box-shadow: 0px 4px 30px rgba(0,0,0,0.1);
 }
 
 .panels h3 {
     font-size: 1.3rem;
     font-family: "Limelight", sans-serif;
-    color: bisque;
+    color: rgba(121, 65, 152, 0.863);
 }
 
 
@@ -115,7 +125,7 @@ body {
 
 .proj-table th,
 .proj-table td {
-    padding: 12px;
+    padding: 16px;
     font-size: 10px;
     /* border: none; */
     text-align: left;
@@ -145,10 +155,29 @@ body {
 
 .github-widget-sec p a {
     text-decoration: none;
-    font-size: 12px;
-    color: beige;
+    font-size: 16px;
+    color: #717476;
     cursor: pointer;
 }
+
+.image_crop_cont {
+    width: 300px;
+    height: 90px;
+    overflow: hidden;
+    position: relative;
+    bottom: 5%;
+    left: 3.5%;
+    top: 11px;
+}
+
+.image_crop_cont img {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    filter: hue-rotate(150deg) saturate(130%) brightness(1.05);
+
+}
+
 
 .bottom-cont {
     display: flex;
@@ -160,8 +189,12 @@ body {
 }
 
 .tt-cont {
+    background: rgba(255, 255, 255, 0.3);
+    /* semi-transparent */
+    backdrop-filter: blur(10px);
+    border: 1.4px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0px 4px 30px rgba(0,0,0,0.1);
     border-radius: 24px;
-    border: #222 1.4px solid;
     padding: 10px 20px;
     width: 790px;
     height: 360px;
@@ -170,7 +203,7 @@ body {
 .tt-cont h2 {
     font-size: 2rem;
     font-family: "Limelight", sans-serif;
-    color: bisque;
+    color: rgba(121, 65, 152, 0.863);
 }
 
 .days ul {
@@ -191,7 +224,7 @@ body {
 }
 
 .class {
-    border: #222 1.1px solid;
+    border: #333 1.1px solid;
     border-radius: 24px;
     width: 150px;
     display: flex;
@@ -217,9 +250,9 @@ body {
 }
 
 select {
-    -webkit-appearance: none;  
-    -moz-appearance: none;     
-    appearance: none;          
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     background: none;
     background-color: white;
     padding: 5px;
@@ -230,7 +263,11 @@ select {
 }
 
 .side-cont {
-    border: #222 solid 1.4px;
+    background: rgba(255, 255, 255, 0.3);
+    /* semi-transparent */
+    backdrop-filter: blur(10px);
+    border: 1.4px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0px 4px 30px rgba(0,0,0,0.1);
     border-radius: 24px;
     height: 360px;
     width: 380px;
@@ -238,7 +275,7 @@ select {
 }
 
 .overall-atc {
-    border: #222 solid 1.1px;
+    border: #333 solid 1.1px;
     border-radius: 14px;
     padding: 8px 10px;
 }
@@ -246,11 +283,11 @@ select {
 .overall-atc h3 {
     font-family: "Limelight", sans-serif;
     font-size: 1.4rem;
-    color: bisque;
+    color: rgba(121, 65, 152, 0.863);
 }
 
-.atc-desc{
-    border: #222 solid 1.1px;
+.atc-desc {
+    border: #333 solid 1.1px;
     border-radius: 14px;
     display: flex;
     flex-direction: row;
@@ -258,13 +295,29 @@ select {
     padding: 8px 10px;
 }
 
-.sub-atc{
+.atc-desc .sub {
+    text-align: left;
+    flex: 1;
+}
+
+.atc-desc .present {
+    text-align: center;
+    flex: 1;
+}
+
+.atc-desc .percentage {
+    text-align: right;
+    flex: 1;
+}
+
+.sub-atc {
     margin-top: 3px;
 }
 
 
+
 .status {
-    border: #222 solid 1px;
+    border: #333 solid 1px;
     border-radius: 12px;
     padding: 6px;
 }

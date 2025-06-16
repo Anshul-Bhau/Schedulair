@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/calender.css' %}">
+    <title>Calender</title>
+</head>
+
+<body>
+    <div class="header">
+        <button id="prev">&larr;</button>
+        <h1>{{ month_name }}/{{ year }}</h1>
+        <button id="next">&rarr;</button>
+    </div>
+    <aside>
+        <div class="side-panel">
+            <div class="title">
+                <h2>Subjects</h2>
+            </div>
+
+            <div class="subj-list-cont">
+                <ul class="side-list">
+                    {% for sub in subjects %}
+                    <li data-title="{{ sub }}" class="{% if sub == subject %}active-subject{% endif %}">
+                        <a href="{% url 'subject_calender' sub %}">{{ sub }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="back">
+                <button onclick=back_func()>&larr;&nbsp;Back</button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="calender">
+        <ul class="calender-list">
+            {% for day, status in days %}
+            {% if status == "No Class" %}
+            <li style="background-color: rgb(0, 0, 0, 0.3);"><time>{{ day }}</time>{{ status }}</li>
+            {% elif status == "Attended" %}
+            <li style="background-color: rgba(0, 255, 35, 0.25);"><time>{{ day }}</time>{{ status }}</li>
+            {% elif status == "Missed" %}
+            <li style="background-color: rgba(255, 0, 0, 0.25);"><time>{{ day }}</time>{{ status }}</li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+<script>
+    function back_func() {
+        window.location.href = "/dashboard"
+    }
+</script>
+
+</html>

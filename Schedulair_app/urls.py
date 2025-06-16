@@ -7,6 +7,7 @@ urlpatterns = [
     path("login/", loginpage, name="login_page"),
     path('user_login/', user_login, name='user_login'),
     path('signup/', user_signup, name='user_signup'),
+    path('subject_calender/<str:subject>', subject_calender, name='subject_calender')
 ]
 
 if settings.DEBUG:

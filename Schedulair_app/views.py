@@ -152,3 +152,38 @@ def user_signup(request):
         return redirect('dashboard')
 
     return render(request, 'login.html')  
+
+def subject_calender(request, subject):
+    current_date = datetime.date.today()
+    month, year = current_date.month, current_date.year
+    month_name = current_date.strftime("%B")
+    month_start_date = current_date.replace(day=1)
+
+    subjects = list(Time_table.objects.values_list('class_name', flat=True).distinct())
+    
+    if current_date.month == 12:
+        month_end_date = current_date.replace(year=current_date.year + 1, month=1, day=1) - datetime.timedelta(days=1)
+    else:
+        month_end_date = current_date.replace(month=current_date.month + 1, day=1) - datetime.timedelta(days=1)
+    attendances = Attendance.objects.filter(date__range=(month_start_date, month_end_date), time_table_entry__class_name =subject)
+    
+    days = {day : "No Class" for day in range(month_start_date.day, month_end_date.day)}
+    for attendance in attendances:
+        if attendance.present:
+            days[attendance.date.day] = "Attended"
+        else:
+            days[attendance.date.day] = "Missed"
+    
+    print(attendances)
+    print(days)
+
+    context = {
+        'subject' : subject,
+        'subjects' : subjects,
+        'days' : days.items(),
+        'month' : month, 
+        'month_name' : month_name,
+        'year' : year,
+    }
+
+    return render(request, "subject_cal.html", context)

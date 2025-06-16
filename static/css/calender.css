@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;800&display=swap");
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font-family: "Poppins", serif;
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle,
+            rgba(238, 174, 202, 1) 0%,
+            rgba(148, 187, 233, 1) 100%);
+}
+
+h1 {
+    position: relative;
+    font-weight: 800;
+    margin: 1rem 0 0;
+}
+
+.header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    width: 830px;
+    left: 85px;
+}
+
+#prev,
+#next {
+    transform: translateY(15%);
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    background-color: transparent;
+    z-index: 15;
+    cursor: none;
+}
+
+#prev {
+    left: 3.5%;
+}
+
+#next {
+    right: 3.5%;
+}
+
+#prev:hover,
+#next:hover {
+    background-color: #eee5;
+}
+
+.title h2 {
+    position: relative;
+    font-weight: 800;
+    top: 50%;
+    left: 30px;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    padding: 1rem 0;
+}
+
+.side-panel {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 180px;
+    height: 100%;
+    box-shadow: 4px 8px 10px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    z-index: 999;
+    transition: left 0.3s ease;
+    background: rgba(255, 255, 255, 0.144);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+}
+
+.side-list {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+    list-style: none;
+}
+
+.side-list li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.side-list li.active-subject a {
+    color: rgb(127, 163, 255);
+    font-weight: bold;
+    border-left: 4px solid rgb(127, 163, 255);
+    padding-left: 0.5rem;
+    transition: all .2s;
+}
+
+.side-list li a:hover {
+    font-size: 1.4rem;
+    color: rgba(127, 163, 255, 0.644);
+}
+
+.back{
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    position: relative;
+    display: flex;
+    left: 15%;
+    bottom: 3%;
+}
+
+.back button {
+    background: transparent;
+    color: black;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    font-style: normal;
+    border: 1.4px solid #222;
+    cursor:pointer;
+}
+
+.back button:hover {
+    background: #222;
+    color: aliceblue;
+    border-radius: 16px;
+}
+
+.calender {
+    position: relative;
+    left: 5%;
+}
+
+.calender-list {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    flex-wrap: wrap;
+    list-style: none;
+
+    li {
+        display: flex;
+        width: 7rem;
+        height: 7rem;
+        margin: 0.25rem;
+        flex-flow: column;
+        border-radius: 0.2rem;
+        padding: 1rem;
+        font-weight: 300;
+        font-size: 1rem;
+        box-sizing: border-box;
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+
+        time {
+            font-size: 2rem;
+            margin: 0 0 1rem 0;
+            font-weight: 500;
+        }
+    }
+}

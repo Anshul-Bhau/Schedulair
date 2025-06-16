@@ -49,12 +49,12 @@
                                             <td>{{ assignment.subject }}</td>
                                             <td>{{ assignment.submission_date }}</td>
                                             <td><span class="status">
-                                                {% if assignment.completed %}
+                                                    {% if assignment.completed %}
                                                     Completed
-                                                {% else %}
+                                                    {% else %}
                                                     Incomplete
-                                                {% endif %}
-                                            </span></td>
+                                                    {% endif %}
+                                                </span></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
@@ -89,12 +89,12 @@
                                             <td>{{ project.start_date }}</td>
                                             <td>{{ project.deadline }}</td>
                                             <td><span class="status">
-                                                {% if project.completed %}
+                                                    {% if project.completed %}
                                                     Completed
-                                                {% else %}
+                                                    {% else %}
                                                     Incomplete
-                                                {% endif %}
-                                            </span></td>
+                                                    {% endif %}
+                                                </span></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
@@ -107,7 +107,9 @@
                 <div class="panels">
                     <section class="github-widget-sec">
                         <h3>Github Contributions</h3>
-                        <p><a href="https://github.com/Anshul-Bhau" target="_blank">Sober704</a></p>
+                        <div class="image_crop_cont">
+                            <img src="https://ghchart.rshah.org/Anshul-Bhau" alt="GitHub contribution chart" />
+                        </div>
                     </section>
                 </div>
             </div>
@@ -155,9 +157,9 @@
                         <div class="sub-atc">
                             {% for subject, stats in attendances.items %}
                             <div class="atc-desc">
-                                    <h3>{{ subject }}</h3>
-                                    <p>{{ stats.present_count }}/{{ stats.total }}</p>
-                                    <p>{{ stats.percentage }}%</p>
+                                <p class="sub">{{ subject }}</p>
+                                <p class="present">{{ stats.present_count }}/{{ stats.total }}</p>
+                                <p class="percentage">{{ stats.percentage }}%</p>
                             </div>
                             {% endfor %}
                         </div>
