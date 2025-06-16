@@ -15,7 +15,7 @@
         <nav class="navbar">
             <label class="db">Dashboard</label>
             <ul>
-                <li><button class="log-option">Sign-in</button></li>
+                <li><button class="log-option" onclick=login_func()>Sign-in</button></li>
                 <li><button id="theme-toggle"><i class="fa-solid fa-moon"></i></button></li>
             </ul>
         </nav>
@@ -178,6 +178,10 @@
             select.style.display = "none";
         }
     });
+
+    function login_func() {
+        window.location.href = "/login"
+    }
 
 </script>
 

@@ -12,8 +12,8 @@ body {
     font-family: "Poppins", serif;
     background: rgb(238, 174, 202);
     background: radial-gradient(circle,
-            rgba(238, 174, 202, 1) 0%,
-            rgba(148, 187, 233, 1) 100%);
+            #6d90b9 0%,
+            #bbc7dc 100%);
     background-size: cover;
     background-position: left center;
     background-repeat: no-repeat;
@@ -24,7 +24,7 @@ body {
 .navbar {
     display: flex;
     min-height: 100px;
-    padding: 2rem;
+    padding-top: 1rem;
     align-items: center;
     justify-content: space-between;
 }
@@ -36,7 +36,7 @@ body {
     font-weight: 700;
     font-style: normal;
     font-size: 2rem;
-    left: 12px;
+    left: 40px;
 }
 
 .navbar ul {
@@ -57,20 +57,25 @@ body {
 }
 
 .navbar .log-option {
+    position: relative;
     background: transparent;
     border-radius: 14px;
     padding: 8px 15px;
-    color: rebeccapurple;
-    border: 1.4px solid rebeccapurple;
+    color: #000000;
+    border: 1.4px solid #000000;
+    right: 30px;
 }
 
 .navbar #theme-toggle {
+    position: relative;
     background-color: transparent;
     border-radius: 50%;
-    border: 1.4px solid rebeccapurple;
+    border: 1.4px solid #000000;
     padding: 8px 10px;
-    color: rebeccapurple;
+    color: #000000;
+    right: 40px;
 }
+
 
 .log-option:hover {
     border: 1.4px solid whitesmoke;
@@ -83,7 +88,7 @@ body {
     align-items: center;
     justify-content: space-between;
     max-width: 1200px;
-    margin: 1rem auto;
+    margin: 0 auto;
     padding: 1rem;
     gap: 1rem;
 }
@@ -100,7 +105,7 @@ body {
     border-radius: 24px;
     padding: 10px 20px;
     width: 380px;
-    height: 160px;
+    height: 200px;
     background: rgba(0, 0, 0, 0.1);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(4px);
@@ -172,15 +177,16 @@ body {
     overflow: hidden;
     position: relative;
     bottom: 5%;
-    left: 3.5%;
-    top: 11px;
+    left: 5.5%;
+    top: 30px;
 }
 
 .image_crop_cont img {
     position: absolute;
     height: 100%;
     right: 0;
-    filter: hue-rotate(150deg) saturate(130%) brightness(1.05);
+    top: -11px;
+    filter: hue-rotate(90deg) saturate(30%) brightness(1.05);
 
 }
 
@@ -202,7 +208,7 @@ body {
     border-radius: 24px;
     padding: 10px 20px;
     width: 790px;
-    height: 360px;
+    height: 363px;
 }
 
 .tt-cont h2 {
@@ -273,7 +279,7 @@ select {
     backdrop-filter: blur(4px);
     border: 1.4px solid rgba(0, 0, 0, 0.18);
     border-radius: 24px;
-    height: 360px;
+    height: 363px;
     width: 380px;
     padding: 8px 8px;
 }
@@ -310,7 +316,10 @@ select {
 }
 
 .sub-atc {
-    margin-top: 3px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .status {
