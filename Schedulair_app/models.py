@@ -52,15 +52,7 @@ def end_time_choices():
 
 
 class Time_table(models.Model):     # instances of each day
-    day_choices = [
-        ('Monday', 'Monday'),
-        ('Tuesday', 'Tuesday'),
-        ('Wednesday', 'Wednesday'),
-        ('Thursday', 'Thursday'),
-        ('Friday', 'Friday'),
-        ('Saturday', 'Saturday'),
-    ]
-    day = models.CharField(choices=day_choices, null=False, blank=False, max_length=200)
+    day = models.CharField(null=True, blank=True, max_length=200)
     class_name = models.TextField(null=False, blank=False, default="Break")
     subject_teacher = models.CharField(max_length=250, null=True, blank=True)
     class_no = models.IntegerField(null=True, blank=True) # in which period the class takes place
@@ -68,6 +60,10 @@ class Time_table(models.Model):     # instances of each day
     start_time = models.CharField(choices=start_time_choices(), max_length=200)
     end_time = models.CharField(choices=end_time_choices(), max_length=200)
     date = models.DateField()
+
+    def save(self, *args, **kwargs):
+        self.day = self.date.strftime("%A")
+        super().save(*args, **kwargs)
 
 class ExamSchedule(models.Model):
     subject = models.CharField(max_length=255)

@@ -33,8 +33,7 @@ h1 {
 
 #prev,
 #next {
-    display: flex
-;
+    display: flex;
     text-decoration: none;
     transform: translateY(15%);
     width: 30px;
@@ -44,7 +43,7 @@ h1 {
     z-index: 15;
     align-items: center;
     justify-content: space-around;
-    cursor: none;
+    cursor: pointer;
 }
 
 #prev {

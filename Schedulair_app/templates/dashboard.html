@@ -15,8 +15,12 @@
         <nav class="navbar">
             <label class="db">Dashboard</label>
             <ul>
-                <li><button class="log-option" onclick=login_func()>Sign-in</button></li>
-                <li><button id="theme-toggle"><i class="fa-solid fa-moon"></i></button></li>
+                {% if user.is_authenticated %}
+                    <li class="log-option" style="padding: 0.5rem 1rem;">{{ user.username }}</li>
+                {% else %}
+                    <li><button class="log-option" onclick="login_func()">Sign-in</button></li>
+                {% endif %}
+                    <li><button id="upload" onclick=upload_func()><i class="fa-solid fa-arrow-up-from-bracket"></i></button></li>
             </ul>
         </nav>
     </header>
@@ -156,7 +160,7 @@
                 <div class="side-cont">
                     <div class="overall-atc">
                         <h3>Overall Attendance</h3>
-                        <p>{{ overall_per }}%</p>
+                        <p>{{ overall_per|floatformat:2 }}&nbsp;%</p>
                     </div>
                     <div class="sub-atc-cont">
                         <div class="sub-atc">
@@ -172,6 +176,17 @@
                 </div>
             </div>
         </div>
+        <div id="saveModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeSaveModal()">&times;</span>
+            <h2 id="save_heading">Upload the csv/xsls file of time-table</h2>
+            <form id="saveRecipeForm" method="POST" action="">
+                {% csrf_token %}
+                <input type="file" name="file-input" id="file-input" accept=".csv, .xsls" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
     </main>
 </body>
 <script>

@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from .models import *
+from .resouces import *
+from django import forms
 
 # Register your models here.
 Users = get_user_model()
@@ -8,10 +10,26 @@ Users = get_user_model()
 class UsersAdmin(admin.ModelAdmin):
     list_display = ('username', 'email', 'role')
 
+class Time_Table_AdminForm(forms.ModelForm):
+    day = forms.CharField(widget=forms.HiddenInput(), required=False)
+
+    class Meta:
+        model = Time_table
+        fields = '__all__'
+    
+    
+
 @admin.register(Time_table)
 class Time_Table_Admin(admin.ModelAdmin):
+    form = Time_Table_AdminForm
+    resource_class = Time_table_Resource
     list_display = ('class_name', 'start_time', 'end_time', 'date', 'day', 'class_no')
     ordering = ('date', )
+
+    def save_model(self, request, obj, form, change):
+        if not obj.day and obj.date:
+            obj.day = obj.date.strftime("%A")
+        return super().save_model(request, obj, form, change)
 
 @admin.register(Holiday)
 class Holiday_Admin(admin.ModelAdmin):
