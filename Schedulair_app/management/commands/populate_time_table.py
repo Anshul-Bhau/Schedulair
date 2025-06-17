@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from Schedulair_app.models import *
 
 class Command(BaseCommand):
-    help = "Populate timetable entries for the semester"
+    help = "Populate timetable entries for the semester and create attendance instances"
     
     def handle(self, *args, **options):
         sem_start_date = ""
@@ -23,6 +23,14 @@ class Command(BaseCommand):
         if not original_week_data.exists():
             self.stdout.write(self.style.WARNING("No timetable data found for the first week."))
             return
+        # Create attendance instances for the first week
+        for entry in original_week_data:
+            if not Attendance.objects.filter(date=entry.date, time_table_entry=entry).exists():
+                Attendance.objects.create(
+                        time_table_entry=entry,
+                        date=entry.date,
+                        present=False,
+                        )
         
         # add 7 days as the data for first week is already added
         week_start = manual_week_start + timedelta(days=7)

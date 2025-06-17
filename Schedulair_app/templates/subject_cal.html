@@ -38,19 +38,36 @@
     </aside>
 
     <div class="calender">
+        <div class="day-list">
+            <ul>
+                <li>Mon</li>
+                <li>Tues</li>
+                <li>Wed</li>
+                <li>Thurs</li>
+                <li>Fri</li>
+                <li>Sat</li>
+                <li>Sun</li>
+            </ul>
+        </div>
         <ul class="calender-list">
-            {% for day, status in days %}
-            {% if status == "No Class" %}
-            <li style="background-color: rgb(0, 0, 0, 0.3);"><time>{{ day }}</time>{{ status }}</li>
-            {% elif status == "Attended" %}
-            <li style="background-color: rgba(0, 255, 35, 0.25);"><time>{{ day }}</time>{{ status }}</li>
-            {% elif status == "Missed" %}
-            <li style="background-color: rgba(255, 0, 0, 0.25);"><time>{{ day }}</time>{{ status }}</li>
-            {% elif status == "Exam" %}
-            <li style="background-color: rgba(211, 113, 191, 0.47);"><time>{{ day }}</time>{{ status }}</li>
-            {% elif status == "Holiday" %}
-            <li style="background-color: rgba(72, 164, 174,  0.47);"><time>{{ day }}</time>{{ status }}</li>
-            {% endif %}
+            {% for day in days %}
+                {% if day is none %}
+                    <li class="empty" style="background: none; box-shadow: none; border: none;"></li>
+                {% else %}
+                        {% with date=day.0 status=day.1 %}
+                            {% if status == "No Class" %}
+                            <li style="background-color: rgb(0, 0, 0, 0.3);"><time>{{ date.day }}</time>{{ status }}</li>
+                            {% elif status == "Attended" %}
+                            <li style="background-color: rgba(0, 255, 35, 0.25);"><time>{{ date.day }}</time>{{ status }}</li>
+                            {% elif status == "Missed" %}
+                            <li style="background-color: rgba(255, 0, 0, 0.25);"><time>{{ date.day }}</time>{{ status }}</li>
+                            {% elif status == "Exam" %}
+                            <li style="background-color: rgba(211, 113, 191, 0.47);"><time>{{ date.day }}</time>{{ status }}</li>
+                            {% elif status == "Holiday" %}
+                            <li style="background-color: rgba(72, 164, 174,  0.47);"><time>{{ date.day }}</time>{{ status }}</li>
+                            {% endif %}
+                    {% endwith %}
+                {% endif %}
             {% endfor %}
         </ul>
     </div>

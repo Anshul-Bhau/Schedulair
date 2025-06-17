@@ -294,6 +294,11 @@ select {
     height: 363px;
     width: 380px;
     padding: 8px 8px;
+    overflow-y: auto;
+}
+
+.side-cont::-webkit-scrollbar {
+    display: none;
 }
 
 .overall-atc {

@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from .models import *
 from .resouces import *
 from django import forms
+from import_export.admin import ImportExportActionModelAdmin
 
 # Register your models here.
 Users = get_user_model()
@@ -16,11 +17,9 @@ class Time_Table_AdminForm(forms.ModelForm):
     class Meta:
         model = Time_table
         fields = '__all__'
-    
-    
 
 @admin.register(Time_table)
-class Time_Table_Admin(admin.ModelAdmin):
+class Time_Table_Admin(ImportExportActionModelAdmin, admin.ModelAdmin):
     form = Time_Table_AdminForm
     resource_class = Time_table_Resource
     list_display = ('class_name', 'start_time', 'end_time', 'date', 'day', 'class_no')

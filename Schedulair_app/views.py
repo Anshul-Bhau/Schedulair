@@ -197,27 +197,40 @@ def subject_calender(request, subject):
     _, last_day = calendar.monthrange(year, month)
     month_end_date = datetime.date(year, month, last_day)
 
+    month_start_day = month_start_date.weekday()
+    days = []
+    for i in range(month_start_day):
+        days.append(None)
+    
+    day_status_dict = {}
+    for date in range(1, last_day + 1):
+        date_obj = datetime.date(year, month, date)
+        day_status_dict[date_obj] = "No Class"
+
     attendances = Attendance.objects.filter(date__range=(month_start_date, month_end_date), time_table_entry__class_name=subject)
     exams = ExamSchedule.objects.filter(date__range=(month_start_date, month_end_date))
     holidays= Holiday.objects.filter(date__range=(month_start_date, month_end_date))
     subjects = list(Time_table.objects.values_list('class_name', flat=True).distinct())
 
-    days = {day : "No Class" for day in range(month_start_date.day, month_end_date.day + 1)}
     for attendance in attendances:
         if attendance.present:
-            days[attendance.date.day] = "Attended"
+            day_status_dict[attendance.date] = "Attended"
         else:
-            days[attendance.date.day] = "Missed"
+            day_status_dict[attendance.date] = "Missed"
     
     for exam in exams:
-        days[exam.date.day] = "Exam"
+        day_status_dict[exam.date] = "Exam"
     for holiday in holidays:
-        days[holiday.date.day] = "Holiday"
+        day_status_dict[holiday.date] = "Holiday"
+    
+    for date in range(1, last_day + 1):
+        date_obj = datetime.date(year, month, date)
+        days.append((date_obj, day_status_dict[date_obj]))
 
     context = {
         'subject' : subject,
         'subjects' : subjects,
-        'days' : days.items(),
+        'days' : days,
         'month' : month, 
         'month_name' : month_name,
         'year' : year,
