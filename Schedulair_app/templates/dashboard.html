@@ -120,12 +120,13 @@
                     <div class="time-table">
                         <div class="days">
                             <ul>
-                                <li>Monday</li>
-                                <li>Tuesday</li>
-                                <li>Wednesday</li>
-                                <li>Thursday</li>
-                                <li>Friday</li>
-                                <li>Saturday</li>
+                                {% for day in week_days %}
+                                    {% if day == current_day %}
+                                        <li style="border-bottom: solid 2px;">{{ day }}</li>
+                                    {% else %}
+                                        <li>{{ day }}</li>
+                                    {% endif %}
+                                {% endfor %}
                             </ul>
                         </div>
 
@@ -136,13 +137,17 @@
                                 <p class="timing">{{ class.start_time }} - {{ class.end_time }}</p>
                                 <label for="atc-status" id="dropdown-btn">Status <i
                                         class="fa-solid fa-angle-down"></i></label>
-                                <div class="select-wrapper">
-                                    <select name="atc-status" class="atc-status" id="slect" style="display: none;">
-                                        <option value="attended">Attended</option>
-                                        <option value="cancelled">Cancelled</option>
-                                        <option value="absent">Absent</option>
-                                    </select>
-                                </div>
+                                <form action="" method="get">
+                                    <div class="select-wrapper">
+                                        <input type="hidden" name="class_id" value="{{ class.id }}">
+                                        <select name="status" class="atc-status" id="slect" onchange="this.form.submit()" style="display: none;">
+                                            <option value="">Select</option>
+                                            <option value="attended">Attended</option>
+                                            <option value="cancelled">Cancelled</option>
+                                            <option value="absent">Absent</option>
+                                        </select>
+                                    </div>
+                                </form>
                             </div>
                             {% endfor %}
                         </div>

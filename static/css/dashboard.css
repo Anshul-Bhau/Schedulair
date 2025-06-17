@@ -226,8 +226,7 @@ body {
 
 .days ul li {
     list-style: none;
-    /* font-family: 'Times New Roman', Times, serif; */
-    font-size: 1rem;
+    font-size: 12px;
 }
 
 .classes {
@@ -235,7 +234,6 @@ body {
 }
 
 .class {
-    border: #333 1.1px solid;
     border-radius: 24px;
     width: 150px;
     display: flex;
@@ -244,6 +242,8 @@ body {
     text-align: center;
     align-items: center;
     height: 150px;
+    box-shadow: 0 0 15px 0 rgba(31, 38, 135, 0.37);
+    border: 1.4px solid rgba(0, 0, 0, 0.18);
 }
 
 .sub-name {
@@ -300,7 +300,7 @@ select {
 }
 
 .atc-desc .sub {
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
     text-align: left;
     flex: 1;

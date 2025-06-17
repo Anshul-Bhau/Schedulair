@@ -65,10 +65,44 @@ def dashboard(request):
     # attendance data 
     attendances , overall_per= attendance_context_data()
 
+    # for the underline under current day
+    current_day = datetime.datetime.now().strftime("%A")
+    week_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+    # attendance updation 
+    status = request.GET.get("status")
+    class_id = request.GET.get("class_id")
+    print(status, class_id)
+    if status and class_id:
+        try:
+            if status == "attended":
+                entry = Attendance.objects.get(id=class_id)
+                entry.present = True
+                entry.save()
+            
+            elif status == "absent":
+                entry = Attendance.objects.get(id=class_id)
+                if entry.present:
+                    entry.present = False
+                    entry.save()
+                else:
+                    pass
+
+            elif status == "cancelled":
+                entry = Attendance.objects.get(id=class_id)
+                entry.delete()
+
+            return redirect('dashboard')
+        
+        except Exception as e:
+            print(e)
+
 
     context = {
         'current_date_tt' : current_date_tt,
         'week_tt' : week_tt,
+        'week_days' : week_days,
+        'current_day' : current_day,
         'month_tt' : month_tt,
         'sem_tt' : sem_tt,
         'exam_tt' : exam_tt,
@@ -78,8 +112,7 @@ def dashboard(request):
         'attendances' : attendances,
         'overall_per' : overall_per,
     }
-    with open("context.txt", "w") as fh:
-        fh.write(str(context))
+
     return render(request, "dashboard.html", context=context)
 
 
