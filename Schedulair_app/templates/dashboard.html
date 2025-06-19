@@ -16,11 +16,11 @@
             <label class="db">Dashboard</label>
             <ul>
                 {% if user.is_authenticated %}
-                    <li class="log-option" style="padding: 0.5rem 1rem;">{{ user.username }}</li>
+                <li class="log-option" style="padding: 0.5rem 1rem;">{{ user.username }}</li>
                 {% else %}
-                    <li><button class="log-option" onclick="login_func()">Sign-in</button></li>
+                <li><button class="log-option" onclick="login_func()">Sign-in</button></li>
                 {% endif %}
-                    <li><button id="upload" onclick=upload_func()><i class="fa-solid fa-arrow-up-from-bracket"></i></button></li>
+                <li><button id="open-modal"><i class="fa-solid fa-arrow-up-from-bracket"></i></button></li>
             </ul>
         </nav>
     </header>
@@ -125,11 +125,11 @@
                         <div class="days">
                             <ul>
                                 {% for day in week_days %}
-                                    {% if day == current_day %}
-                                        <li style="border-bottom: solid 2px;">{{ day }}</li>
-                                    {% else %}
-                                        <li>{{ day }}</li>
-                                    {% endif %}
+                                {% if day == current_day %}
+                                <li style="border-bottom: solid 2px;">{{ day }}</li>
+                                {% else %}
+                                <li>{{ day }}</li>
+                                {% endif %}
                                 {% endfor %}
                             </ul>
                         </div>
@@ -144,7 +144,8 @@
                                 <form action="" method="get">
                                     <div class="select-wrapper">
                                         <input type="hidden" name="class_id" value="{{ class.id }}">
-                                        <select name="status" class="atc-status" id="slect" onchange="this.form.submit()" style="display: none;">
+                                        <select name="status" class="atc-status" id="slect"
+                                            onchange="this.form.submit()" style="display: none;">
                                             <option value="">Select</option>
                                             <option value="attended">Attended</option>
                                             <option value="cancelled">Cancelled</option>
@@ -176,33 +177,29 @@
                 </div>
             </div>
         </div>
-        <div id="saveModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeSaveModal()">&times;</span>
-            <h2 id="save_heading">Upload the csv/xsls file of time-table</h2>
-            <form id="saveRecipeForm" method="POST" action="">
-                {% csrf_token %}
-                <input type="file" name="file-input" id="file-input" accept=".csv, .xsls" required>
-                <button type="submit">Submit</button>
-            </form>
+        <div class="modal-cont" id="modal-cont">
+            <div class="modal">
+                <div class="options">
+                    <div class="add-tt">
+                        <h3>Add Classes</h3>
+                        <button id="add-class-btn" onclick= class_admin_func()><i
+                                class="fa-solid fa-arrow-up-from-bracket"></i></button>
+                    </div>
+                    <div class="add-exam">
+                        <h3>Add Exams</h3>
+                        <button id="add-exam-btn" onclick= exam_admin_func()><i
+                                class="fa-solid fa-arrow-up-from-bracket"></i></button>
+                    </div>
+                    <div class="add-holiday">
+                        <h3>Add Holidays</h3>
+                        <button id="add-holiday-btn" onclick= holiday_admin_func()><i
+                                class="fa-solid fa-arrow-up-from-bracket"></i></button>
+                    </div>
+                </div>
+                <button id="close-modal-btn">close</button>
+            </div>
         </div>
-    </div>
     </main>
 </body>
-<script>
-    document.getElementById("dropdown-btn").addEventListener("click", () => {
-        const select = document.getElementById("slect");
-        if (select.style.display === "none" || select.style.display === "") {
-            select.style.display = "block";
-        } else {
-            select.style.display = "none";
-        }
-    });
-
-    function login_func() {
-        window.location.href = "/login"
-    }
-
-</script>
-
+<script src="{% static '/js/dashboard.js' %}"></script>
 </html>

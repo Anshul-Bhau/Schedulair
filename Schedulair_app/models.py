@@ -1,7 +1,7 @@
 from django.db import models, transaction
 from datetime import datetime, timedelta
 from django.db.models import Q, Count
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Permission
 from django.contrib.auth.hashers import make_password
 import uuid
 
@@ -26,7 +26,23 @@ class Users(AbstractUser):
         if self.password and not self.password.startswith('pbkdf2_'):
             self.password = make_password(self.password)
 
+        self.is_staff = True
+
         super().save(*args, **kwargs)
+        self.user_perms()
+    
+    def user_perms(self):
+        if self.role == "user":
+            permissions = ["add_time_table", "change_time_table", "delete_time_table", "view_time_table",
+                        "add_examschedule", "change_examschedule", "delete_examschedule", "view_examschedule",
+                        "add_holiday", "change_holiday", "delete_holiday", "view_holiday"]
+            for perm_codename in permissions:
+                try:
+                    perm = Permission.objects.get(codename=perm_codename)
+                    if not self.user_permissions.filter(codename=perm_codename).exists():
+                        self.user_permissions.add(perm)
+                except Permission.DoesNotExist:
+                    print(f"Permission {perm_codename} not found.")
 
 
 def start_time_choices():
