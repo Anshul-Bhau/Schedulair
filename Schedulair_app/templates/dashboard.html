@@ -147,12 +147,12 @@
                             <div class="class">
                                 <p class="sub-name">{{ class.class_name }}</p>
                                 <p class="timing">{{ class.start_time }} - {{ class.end_time }}</p>
-                                <label for="atc-status" id="dropdown-btn">Status <i
+                                <label class="dropdown-btn">Status <i
                                         class="fa-solid fa-angle-down"></i></label>
                                 <form action="" method="get">
                                     <div class="select-wrapper">
                                         <input type="hidden" name="class_id" value="{{ class.id }}">
-                                        <select name="status" class="atc-status" id="slect"
+                                        <select name="status" class="dropdown-select"
                                             onchange="this.form.submit()" style="display: none;">
                                             <option value="">Select</option>
                                             <option value="attended">Attended</option>

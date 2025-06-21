@@ -26,12 +26,21 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    document.getElementById("dropdown-btn").addEventListener("click", () => {
-        const select = document.getElementById("slect");
-        if (select.style.display === "none" || select.style.display === "") {
-            select.style.display = "block";
-        } else {
-            select.style.display = "none";
-        }
+    const buttons = document.querySelectorAll(".dropdown-btn");
+    buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            console.log("Clicked on dropdown:", btn);
+
+            const parent = btn.closest(".class");
+            const select = parent.querySelector(".dropdown-select");
+            if (select) {
+                select.style.display = (select.style.display === "none" || select.style.display === "") ? "block" : "none";
+            } else {
+                console.warn("Dropdown <select> not found inside:", parent);
+            }
+        });
     });
+
 });
+
+
