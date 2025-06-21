@@ -8,10 +8,12 @@ from django.db.models import Q, Count
 
 # Create your views here.
 
-def timetable_context_data():
+def timetable_context_data(current_date):
     # time-table for current day
-    current_date = datetime.date.today()
+    print(current_date)
+    
     current_date_tt = Time_table.objects.filter(date = current_date)
+    print(current_date_tt)
 
     # time-table for current week
     week_start_date = current_date - datetime.timedelta(days=current_date.weekday())
@@ -53,8 +55,16 @@ def attendance_context_data():
     return attendances, overall_per
 
 def dashboard(request):
+    date = datetime.date.today()
+    flatpickr_input_str = request.GET.get('flatpickr_input')
+    print(flatpickr_input_str)
+    try:
+        flatpickr_input = datetime.datetime.strptime(flatpickr_input_str, "%Y-%m-%d").date() if flatpickr_input_str else date
+    except ValueError:
+        flatpickr_input = date
+    print(f"Type of flatpickr_input: {type(flatpickr_input)}, Value: {flatpickr_input}")
     # time table data
-    current_date_tt, week_tt, month_tt, sem_tt, exam_tt, holidays = timetable_context_data()
+    current_date_tt, week_tt, month_tt, sem_tt, exam_tt, holidays = timetable_context_data(flatpickr_input)
 
     # assignment data
     assignments = Assignments.objects.filter(submitted = False)
@@ -66,8 +76,11 @@ def dashboard(request):
     attendances , overall_per= attendance_context_data()
 
     # for the underline under current day
+    
+    month_name = date.strftime("%B")
     current_day = datetime.datetime.now().strftime("%A")
     week_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    
 
     # attendance updation 
     status = request.GET.get("status")
@@ -99,6 +112,8 @@ def dashboard(request):
 
 
     context = {
+        'date' : flatpickr_input,
+        'month' : month_name,
         'current_date_tt' : current_date_tt,
         'week_tt' : week_tt,
         'week_days' : week_days,

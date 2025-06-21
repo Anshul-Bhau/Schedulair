@@ -8,6 +8,8 @@
     <title>Schedulair</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{% static '/css/dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 </head>
 
 <body>
@@ -121,6 +123,10 @@
             <div class="bottom-cont">
                 <div class="tt-cont">
                     <h2>Class Schedule</h2>
+                    <div class="date-picker-wrapper">
+                            <div id="date-display" class="date-display">{{ date }}</div>
+                            <input type="text" id="flatpickr-input" style="display: none;">
+                        </div>
                     <div class="time-table">
                         <div class="days">
                             <ul>
@@ -133,6 +139,8 @@
                                 {% endfor %}
                             </ul>
                         </div>
+                        
+
 
                         <div class="classes">
                             {% for class in current_date_tt %}
@@ -182,17 +190,17 @@
                 <div class="options">
                     <div class="add-tt">
                         <h3>Add Classes</h3>
-                        <button id="add-class-btn" onclick= class_admin_func()><i
+                        <button id="add-class-btn" onclick=class_admin_func()><i
                                 class="fa-solid fa-arrow-up-from-bracket"></i></button>
                     </div>
                     <div class="add-exam">
                         <h3>Add Exams</h3>
-                        <button id="add-exam-btn" onclick= exam_admin_func()><i
+                        <button id="add-exam-btn" onclick=exam_admin_func()><i
                                 class="fa-solid fa-arrow-up-from-bracket"></i></button>
                     </div>
                     <div class="add-holiday">
                         <h3>Add Holidays</h3>
-                        <button id="add-holiday-btn" onclick= holiday_admin_func()><i
+                        <button id="add-holiday-btn" onclick=holiday_admin_func()><i
                                 class="fa-solid fa-arrow-up-from-bracket"></i></button>
                     </div>
                 </div>
@@ -202,4 +210,36 @@
     </main>
 </body>
 <script src="{% static '/js/dashboard.js' %}"></script>
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const display = document.getElementById('date-display');
+        const input = document.getElementById('flatpickr-input');
+
+        if (!display || !input) {
+            console.error("Date display or input not found.");
+            return;
+        }
+
+        const picker = flatpickr(input, {
+            dateFormat: "Y-m-d",
+            allowInput: true,
+            onChange: function (selectedDates, dateStr) {
+                if (dateStr) {
+                    const currentUrl = new URL(window.location.href);
+                    currentUrl.searchParams.set('flatpickr_input', dateStr);
+                    window.location.href = currentUrl.toString();
+                }  
+            },
+            onClose: function () {
+                input.blur();
+            }
+        });
+
+        display.addEventListener('click', function () {
+            picker.open();
+        });
+    });
+</script>
 </html>

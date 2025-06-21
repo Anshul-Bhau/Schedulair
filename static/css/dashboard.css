@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: rgba(0,0,0,1);
+    color: rgba(0, 0, 0, 1);
 }
 
 body {
@@ -63,7 +63,8 @@ body {
     border: 1.4px solid #222;
 }
 
-.log-option:hover, #open-modal:hover {
+.log-option:hover,
+#open-modal:hover {
     border: 1.4px solid whitesmoke;
     color: whitesmoke;
 }
@@ -243,6 +244,8 @@ body {
 
 .classes {
     padding: 20px 20px;
+    display: flex;
+    gap: 1rem;
 }
 
 .class {
@@ -287,6 +290,16 @@ select {
     border: 1px solid #ccc;
 }
 
+
+.date-display {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    background: #00000000;
+}
+
+
 .side-cont {
     background: rgba(0, 0, 0, 0.1);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -327,7 +340,7 @@ select {
 
 .atc-desc .sub:hover {
     color: rgb(44, 61, 105);
-} 
+}
 
 .atc-desc .present {
     text-align: center;

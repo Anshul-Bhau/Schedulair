@@ -63,7 +63,6 @@ def end_time_choices():
     slots = start_time_choices()
     slots.append(('15:30', '15:30'))
     slots = [slot for slot in slots if slot[0] != '08:30']
-    # slots.remove(('8:30', '8:30'))
     return slots
 
 

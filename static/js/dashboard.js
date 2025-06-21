@@ -26,13 +26,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
-    // document.getElementById("dropdown-btn").addEventListener("click", () => {
-    //     const select = document.getElementById("slect");
-    //     if (select.style.display === "none" || select.style.display === "") {
-    //         select.style.display = "block";
-    //     } else {
-    //         select.style.display = "none";
-    //     }
-    // });
+    document.getElementById("dropdown-btn").addEventListener("click", () => {
+        const select = document.getElementById("slect");
+        if (select.style.display === "none" || select.style.display === "") {
+            select.style.display = "block";
+        } else {
+            select.style.display = "none";
+        }
+    });
 });
